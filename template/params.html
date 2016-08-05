@@ -30,7 +30,7 @@
                     <script type="text/javascript">
                     // Turn DIV slider into a slider linked to scale
                     $(document).ready(function() {
-                          createLinkedSlider('#nblevels', '#nblevels_slider', 2, 255, 1);
+                          createLinkedSlider('#nblevels', '#nblevels_slider', 2, 255, 10);
                     });
                     </script>
                     <div style="clear:both"> </div>
@@ -43,13 +43,13 @@
              <div style="float:left;padding-right:25px">
                <label for="freq">Frequence of retained points <font color=blue><i>freq</i></font>:</label>
                <input type="text" style="font-family:monospace;text-align:right"
-                 size="3" id="freq" name="freq" value="10" />
+                 size="3" id="freq" name="freq" value="5" />
              </div>
              <div id="freq_slider" name="freq_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
              <script type="text/javascript">
              // Turn DIV slider into a slider linked to scale
              $(document).ready(function() {
-                   createLinkedSlider('#freq', '#freq_slider', 1, 50, 1);
+                   createLinkedSlider('#freq', '#freq_slider', 1, 50, 5);
              });
              </script>
              <div style="clear:both"> </div>
