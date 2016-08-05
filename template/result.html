@@ -1,0 +1,112 @@
+<%include file="header.html" />
+
+<p> The input contours of the algorithm were obtained using the <i>img2freeman</i> command with following parameters:
+
+<ul>
+
+<li>  image  threshold  min <font color="blue"><i>tmin</i></font>: ${app.cfg['param']['tmin']}  </li>
+ <li>  image  threshold  max <font color="blue"><i>tmax</i></font>: ${app.cfg['param']['tmax']}
+</li>
+<li>  blur filter size <font color="blue"><i>sigma</i></font>: ${app.cfg['param']['sigma']}  </li>
+<li>  ATS thickness value <font color="blue"><i>thickness</i></font>: ${app.cfg['param']['thickness']}  </li>
+<li>  prog version: ${app.cfg['param']['version']}
+</ul>
+</p>
+
+<p> The main algorithm was applied with the following parameters:
+<ul>
+
+</ul>
+</p>
+
+
+
+
+<BR>
+<BR>
+<form action="${app.base_url}" method="get">
+  <div class="action">
+    Restart this algorithm with new data.
+    <input type="submit" value="new input" />
+  </div>
+</form>
+
+<form action="${app.base_url + 'params'}" method="get">
+  <div class="action">
+    Restart this algorithm with new parameters.
+    <input type="hidden" name="key" value="${app.key}">
+    <input type="hidden" name="newrun" value="1">
+    <input type="submit" value="new parameters" />
+  </div>
+</form>
+
+<hr />
+
+<h2>Result</h2>
+
+
+<p>You can download the resulting ATC in  <a href="${app.work_url+'res_alphaThickSegments.eps'}">eps</a> format, or download the the resulting contours in <a href="${app.work_url+'outputContours.txt'}">txt</a>  format </p>
+
+
+<div class="gallery" style="height:${height}px">
+  <ul class="index">
+    <li>
+      <a href="${app.work_url+'input_0.png'}">input.png
+	<span>
+	  <img height="${height}" src="${app.work_url + 'input_0.png'}" alt="input" />
+	</span>
+      </a>
+    </li>
+    <li>
+      <a href="${app.work_url+'res_contours.png'}">canny contours
+	<span>
+	  <img  height="${height}" src="${app.work_url + 'res_contours.png'}" alt="output ATC" />
+	</span>
+      </a>
+    </li>
+    <li>
+      <a href="${app.work_url+'resultCurvature.png'}">MST curvature
+	<span>
+	  <img  height="${height}" src="${app.work_url + 'resultCurvature.png'}" alt="output ATC" />
+	</span>
+      </a>
+    </li>
+    <li>
+      <a href="${app.work_url+'resultUnbiasedVarianceCurvature.png'}"> MST curvature  Unbiased Variance
+	<span>
+	  <img  height="${height}" src="${app.work_url + 'resultUnbiasedVarianceCurvature.png'}" alt="output ATC" />
+	</span>
+      </a>
+    </li>
+
+    <li>
+      <a href="${app.work_url+'res_alphaThickSegments.png'}">AlphaThick Segments
+	<span>
+	  <img  height="${height}" src="${app.work_url + 'res_alphaThickSegments.png'}" alt="output ATC" />
+	</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+
+<h2>
+  <a class="toggle" href="#commands" onclick="toggle('commands');">
+    Additional Info
+  </a>
+</h2>
+<div id="commands" style="display:none">
+<p>
+The algorithm ran with the following commands:
+<pre class="stdio"> ${app.list_commands} </pre>
+</p>
+</div>
+
+
+
+
+<hr />
+<%include file="archive_info.html" />
+
+<%include file="footer.html" />
