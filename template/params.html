@@ -24,13 +24,13 @@
                     <div style="float:left;padding-right:25px">
                     <label for="nblevels">number of level sets <font color=blue><i>nblevels</i></font>:</label>
                      <input type="text" style="font-family:monospace;text-align:right"
-                        size="3" id="nblevels" name="nblevels" value="2" />
+                        size="3" id="nblevels" name="nblevels" value="20" />
                     </div>
                     <div id="nblevels_slider" name="nblevels_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
                     <script type="text/javascript">
                     // Turn DIV slider into a slider linked to scale
                     $(document).ready(function() {
-                          createLinkedSlider('#nblevels', '#nblevels_slider', 2, 255, 10);
+                          createLinkedSlider('#nblevels', '#nblevels_slider', 2, 255, 1);
                     });
                     </script>
                     <div style="clear:both"> </div>
@@ -49,7 +49,7 @@
              <script type="text/javascript">
              // Turn DIV slider into a slider linked to scale
              $(document).ready(function() {
-                   createLinkedSlider('#freq', '#freq_slider', 1, 50, 5);
+                   createLinkedSlider('#freq', '#freq_slider', 1, 50, 1);
              });
              </script>
              <div style="clear:both"> </div>
