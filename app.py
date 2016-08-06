@@ -120,11 +120,8 @@ class app(base_app):
 
         # save and validate the parameters
         try:
-            self.cfg['param']['sigma'] = kwargs['sigma']
-            self.cfg['param']['tmin'] = kwargs['tmin']
-            self.cfg['param']['tmax'] = kwargs['tmax']
-            self.cfg['param']['thickness'] = kwargs['thickness']
-            
+            self.cfg['param']['nblevels'] = kwargs['nblevels']
+            self.cfg['param']['freq'] = kwargs['freq']
             self.cfg.save()
         except ValueError:
             return self.error(errcode='badparams',
@@ -162,16 +159,12 @@ class app(base_app):
             ar.add_file("input_0.png", "original.png", info="uploaded")
             ar.add_file("algoLog.txt", info="algoLog.txt")
             ar.add_file("commands.txt", info="commands.txt")
-            ar.add_file("res_alphaThickSegments.png", "res_alphaThickSegments.png", info="res_alphaThickSegments.png")
-            ar.add_file("res_contours.png", "res_contours.png", info="res_contours.png")
-            ar.add_file("resultUnbiasedVarianceCurvature.png", "resultUnbiasedVarianceCurvature.png", info="resultUnbiasedVarianceCurvature.png")
-            ar.add_file("resultCurvature.png", "resultCurvature.png", info = "resultCurvature.png")
-            ar.add_file("outputContours.txt", "outputContours.txt", info="outputContours.txt")
+            ar.add_file("res_ImageVecto.png", "res_ImageVecto.png", info="res_alphaThickSegments.png")
+            ar.add_file("res_ImageMesh.png", "res_ImageMesh.png", info="res_ImageMesh.png")
+            ar.add_file("res_ImageVecto.pdf", "res_ImageVecto.pdf", info = "res_ImageVecto.pdf")
             ar.add_info({"version": self.cfg['param']["version"]})
-            ar.add_info({"sigma": self.cfg['param']["sigma"]})
-            ar.add_info({"th min": self.cfg['param']["tmin"]})
-            ar.add_info({"th max": self.cfg['param']["tmax"]})
-            ar.add_info({"ATBS thickness": self.cfg['param']["thickness"]})
+            ar.add_info({"nblevels": self.cfg['param']["nblevels"]})
+            ar.add_info({"freq": self.cfg['param']["freq"]})
             ar.save()
         return self.tmpl_out("run.html")
 
@@ -198,26 +191,16 @@ class app(base_app):
 
         inputWidth = image(self.work_dir + 'input_0.png').size[0]
         inputHeight = image(self.work_dir + 'input_0.png').size[1]
-        command_args = ['lineDetectATS'] + \
-                       [ '-i', 'inputNG.pgm', '-o', 'res', '-e', "outputContours.txt"] + \
-                       ['-s', str(self.cfg['param']['sigma'])] + \
-                       ['--lowTh', str(self.cfg['param']['tmin'])] + \
-                       ['--highTh', str(self.cfg['param']['tmax'])] + \
-                       ['--displayATS', str(self.cfg['param']['thickness'])]  
+        command_args = ['imageVectorisation'] + \
+                       [ '-i', 'inputNG.pgm', '-o', 'res_ImageVecto.eps'] + \
+                       ['-s', str(self.cfg['param']['nblevels'])] + \
+                       ['-p', str(self.cfg['param']['freq'])]   
                        
         
         f = open(self.work_dir+"algoLog.txt", "a")
         cmd = self.runCommand(command_args, None, f)
         f.close()
 
-        ## ------
-        ## process 4: compute curvature on canny edges.
-        ## ------
-        fInfoCurvature = open(self.work_dir+"algoCurvatureLog.txt", "a")
-        command_args = ['mstCurvatureFilter', '-i', 'outputContours.txt', '-m','100'] + \
-                       ['-o', 'result', '-d', '2', '-M' ]
-        cmd = self.runCommand(command_args, None, fInfoCurvature)
-        fInfoCurvature.close()
 
 
 
@@ -227,22 +210,8 @@ class app(base_app):
         widthDisplay = max(inputWidth, 512)
         fInfo = open(self.work_dir+"algoLog.txt", "a")
         command_args = ['convert.sh', '-background', '#FFFFFF', '-flatten', \
-                        self.work_dir +'res_contours.eps', '-geometry', str(widthDisplay)+"x", 'res_contours.png']
+                        self.work_dir +'res_ImageVecto.eps', '-geometry', str(widthDisplay)+"x", 'res_contours.png']
         self.runCommand(command_args, None, fInfo)
-        command_args = ['convert.sh', '-background', '#FFFFFF', '-flatten', \
-                        'res_alphaThickSegments.eps', '-geometry', str(widthDisplay)+"x", 'res_alphaThickSegments.png']
-        self.runCommand(command_args, None, fInfo)
-        command_args = ['convert.sh', '-background', '#FFFFFF', '-flatten', \
-                        'resultCurvature.eps', '-geometry', str(widthDisplay)+"x", 'resultCurvature.png']
-        self.runCommand(command_args, None, fInfo)
-        command_args = ['convert.sh', '-background', '#FFFFFF', '-flatten', \
-                        'resultUnbiasedVarianceCurvature.eps', '-geometry', str(widthDisplay)+"x", \
-                        'resultUnbiasedVarianceCurvature.png']
-        self.runCommand(command_args, None, fInfo)
-
-
-        #shutil.copy(self.work_dir + os.path.join("res_contours.eps"), 
-        #            self.work_dir + os.path.join("outputATSD.eps"))
         fInfo.close()
 
 
