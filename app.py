@@ -201,15 +201,13 @@ class app(base_app):
         f.close()
 
 
-
-
         ## ---------
         ## process 3: converting to output result
         ## ---------
         widthDisplay = max(inputWidth, 512)
         fInfo = open(self.work_dir+"algoLog.txt", "a")
         command_args = ['convert.sh', '-background', '#FFFFFF', '-flatten', \
-                        self.work_dir +'res_ImageVecto.eps', '-geometry', str(widthDisplay)+"x", 'res_contours.png']
+                        self.work_dir +'res_ImageVecto.eps', '-geometry', str(widthDisplay)+"x", 'res_ImageVecto.png']
         self.runCommand(command_args, None, fInfo)
         fInfo.close()
 
