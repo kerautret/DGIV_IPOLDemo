@@ -160,7 +160,6 @@ class app(base_app):
             ar.add_file("algoLog.txt", info="algoLog.txt")
             ar.add_file("commands.txt", info="commands.txt")
             ar.add_file("res_ImageVecto.png", "res_ImageVecto.png", info="res_alphaThickSegments.png")
-            ar.add_file("res_ImageMesh.png", "res_ImageMesh.png", info="res_ImageMesh.png")
             ar.add_file("res_ImageVecto.pdf", "res_ImageVecto.pdf", info = "res_ImageVecto.pdf")
             ar.add_info({"version": self.cfg['param']["version"]})
             ar.add_info({"nblevels": self.cfg['param']["nblevels"]})
@@ -220,7 +219,7 @@ class app(base_app):
         ## ------
         # Save version num:
         fVersion = open(self.work_dir+"version.txt", "w")
-        command_args = ['lineDetectATS', '--version']
+        command_args = ['imageVectorisation', '--version']
         self.runCommand(command_args, None, fVersion)
         fVersion.close()
         f = open(self.work_dir+"version.txt", "r")
