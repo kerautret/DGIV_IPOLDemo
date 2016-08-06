@@ -211,6 +211,16 @@ class app(base_app):
         self.runCommand(command_args, None, fInfo)
         fInfo.close()
 
+        ## ---------
+        ## process 3: converting to output result
+        ## ---------
+        widthDisplay = max(inputWidth, 512)
+        fInfo = open(self.work_dir+"algoLog.txt", "a")
+        command_args = ['convertPDF.sh',  \
+                        self.work_dir +'res_ImageVecto.eps', 'res_ImageVecto.pdf']
+        self.runCommand(command_args, None, fInfo)
+        fInfo.close()
+
 
 
 
