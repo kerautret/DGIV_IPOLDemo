@@ -256,7 +256,7 @@ class app(base_app):
         Run command and update the attribute list_commands
         """
         p = self.run_proc(command, stderr=stdErr, stdout=stdOut, \
-        				  env={'LD_LIBRARY_PATH' : self.bin_dir})
+        				  env={'LD_LIBRARY_PATH' : self.bin_dir, 'DISPLAY': ':0.0'})
         self.wait_proc(p, timeout=self.timeout)
         index = 0
         # transform convert.sh in it classic prog command (equivalent)
