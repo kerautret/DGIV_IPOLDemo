@@ -161,8 +161,8 @@ class app(base_app):
             ar.add_file("commands.txt", info="commands.txt")
             ar.add_file("res_ImageVecto.png", "res_ImageVecto.png", info="res_ImageVecto.png")
             ar.add_file("res_ImageVecto.pdf", "res_ImageVecto.pdf", info = "res_ImageVecto.pdf")
-            ar.add_file("res_ImageVectoMesh.png", "res_ImageVectoMesh.png", info="res_ImageVectoMesh.png")
-            ar.add_file("res_ImageVectoMesh.pdf", "res_ImageVectoMesh.pdf", info="res_ImageVectoMesh.pdf")
+            ar.add_file("res_ImageVectoContours.png", "res_ImageVectoContours.png", info="res_ImageVectoContours.png")
+            ar.add_file("res_ImageVectoContours.pdf", "res_ImageVectoContours.pdf", info="res_ImageVectoContours.pdf")
             ar.add_info({"version": self.cfg['param']["version"]})
             ar.add_info({"nblevels": self.cfg['param']["nblevels"]})
             ar.add_info({"freq": self.cfg['param']["freq"]})
@@ -192,11 +192,11 @@ class app(base_app):
 
         inputWidth = image(self.work_dir + 'input_0.png').size[0]
         inputHeight = image(self.work_dir + 'input_0.png').size[1]
-        command_args = ['imageVectorisation'] + \
+        command_args = ['levelSetImageVectorization'] + \
                        [ '-i', 'inputNG.pgm', '-o', 'res_ImageVecto.eps'] + \
                        ['-s', str(self.cfg['param']['nblevels'])] + \
                        ['-p', str(self.cfg['param']['freq'])] + \
-                       ['-M', 'res_ImageVectoMesh.eps']
+                       ['-C', 'res_ImageVectoContours.eps']
                        
         
         f = open(self.work_dir+"algoLog.txt", "a")
@@ -220,7 +220,7 @@ class app(base_app):
         widthDisplay = max(inputWidth, 512)
         fInfo = open(self.work_dir+"algoLog.txt", "a")
         command_args = ['convert.sh', '-background', '#FFFFFF', '-flatten', \
-                        self.work_dir +'res_ImageVectoMesh.eps', '-geometry', str(widthDisplay)+"x", 'res_ImageVectoMesh.png']
+                        self.work_dir +'res_ImageVectoContours.eps', '-geometry', str(widthDisplay)+"x", 'res_ImageVectoContours.png']
         self.runCommand(command_args, None, fInfo)
         fInfo.close()
 
@@ -241,7 +241,7 @@ class app(base_app):
         widthDisplay = max(inputWidth, 512)
         fInfo = open(self.work_dir+"algoLog.txt", "a")
         command_args = ['convertPDF.sh',  \
-                        self.work_dir +'res_ImageVectoMesh.eps', 'res_ImageVectoMesh.pdf']
+                        self.work_dir +'res_ImageVectoContours.eps', 'res_ImageVectoContours.pdf']
         self.runCommand(command_args, None, fInfo)
         fInfo.close()
 
