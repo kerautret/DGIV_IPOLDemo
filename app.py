@@ -121,7 +121,7 @@ class app(base_app):
         # save and validate the parameters
         try:
             self.cfg['param']['nblevels'] = kwargs['nblevels']
-            self.cfg['param']['freq'] = kwargs['freq']
+            self.cfg['param']['algorithm'] = kwargs['algorithm']
             self.cfg.save()
         except ValueError:
             return self.error(errcode='badparams',
