@@ -199,7 +199,13 @@ class app(base_app):
                        ['-C', 'res_ImageVectoContours.eps']
         if str(self.cfg['param']['algorithm']) == 'dominant points' :
             command_args = command_args + ['-a', str(self.cfg['param']['scale'])]
-        
+        if str(self.cfg['param']['algorithm']) == 'digital level layer' :
+            command_args = command_args + ['-l']
+        if str(self.cfg['param']['algorithm']) == 'Frechet' :
+            command_args = command_args + ['-f', str(self.cfg['param']['scale'])]
+        if str(self.cfg['param']['algorithm']) == 'Visual Curvature' :
+            command_args = command_args + ['-c', str(self.cfg['param']['scale']/50.0)]
+            
         f = open(self.work_dir+"algoLog.txt", "a")
         cmd = self.runCommand(command_args, None, f)
         f.close()
