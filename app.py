@@ -164,9 +164,11 @@ class app(base_app):
             ar.add_file("res_ImageVecto.pdf", "res_ImageVecto.pdf", info = "res_ImageVecto.pdf")
             ar.add_file("res_ImageVectoContours.png", "res_ImageVectoContours.png", info="res_ImageVectoContours.png")
             ar.add_file("res_ImageVectoContours.pdf", "res_ImageVectoContours.pdf", info="res_ImageVectoContours.pdf")
-            ar.add_info({"version": self.cfg['param']["version"]})
+            ar.add_info({"algo": self.cfg['param']["algorithm"]})
             ar.add_info({"nblevels": self.cfg['param']["nblevels"]})
-            ar.add_info({"algorithm": self.cfg['param']["algorithm"]})
+            if str(self.cfg['param']['algorithm']) != 'Frechet'             
+               ar.add_info({"scale": self.cfg['param']["scale"]})
+            ar.add_info({"version": self.cfg['param']["version"]})
             ar.save()
         return self.tmpl_out("run.html")
 
