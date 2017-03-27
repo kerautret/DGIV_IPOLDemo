@@ -9,7 +9,7 @@
 </li>
 <li>  Algorithm: ${app.cfg['param']['algorithm']}</li>
 
-  %  if str(self.cfg['param']['algorithm']) != 'digital level layer' :
+%  if str(app.cfg['param']['algorithm']) != 'digital level layer' :
 <li> Scale: ${app.cfg['param']['scale']} </li>
 %endif
 <li>  prog version: ${app.cfg['param']['version']}</li>
