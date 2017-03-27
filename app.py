@@ -165,7 +165,7 @@ class app(base_app):
             ar.add_file("res_ImageVectoContours.pdf", "res_ImageVectoContours.pdf", info="res_ImageVectoContours.pdf")
             ar.add_info({"version": self.cfg['param']["version"]})
             ar.add_info({"nblevels": self.cfg['param']["nblevels"]})
-            ar.add_info({"freq": self.cfg['param']["freq"]})
+            ar.add_info({"algorithm": self.cfg['param']["algorithm"]})
             ar.save()
         return self.tmpl_out("run.html")
 
@@ -194,10 +194,10 @@ class app(base_app):
         inputHeight = image(self.work_dir + 'input_0.png').size[1]
         command_args = ['levelSetImageVectorization'] + \
                        [ '-i', 'inputNG.pgm', '-o', 'res_ImageVecto.eps'] + \
-                       ['-s', str(self.cfg['param']['nblevels'])] + \
-                       ['-p', str(self.cfg['param']['freq'])] + \
+                       ['-s', str(self.cfg['param']['nblevels'])] +\
                        ['-C', 'res_ImageVectoContours.eps']
-                       
+        if str(self.cfg['param']['algorithm']) == 'dominant points' :
+            command_args = command_args + ['-a', str(self.cfg['param']['scale'])]
         
         f = open(self.work_dir+"algoLog.txt", "a")
         cmd = self.runCommand(command_args, None, f)

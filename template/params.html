@@ -5,8 +5,7 @@
 
 <p>
 
-  You can set the parameters associated to the vectorization
-  (<font color=blue> <i>nblevels</i> </font>, <font color=blue> <i>freq</i> </font>).
+  You can set the parameters associated to the vectorization:
   <br/>
 
 
@@ -16,7 +15,7 @@
     <input type="hidden" name="key" value="${app.key}">
   <div class="action">
     <ul>
-      <li> Choose polygonalization algorithm
+      <li> Polygonalization algorithm:
         <select name="algorithm">
       %for _p in ['dominant points','digital level layer','Frechet','Visual Curvature']:
          <option value="${_p}">${_p}</option>
@@ -24,7 +23,7 @@
       </select>
         <br>
       </li>
-      <li> Scale parameter (not used for digital level layer, and *10 for visual curvature) <br>
+      <li> Scale parameter (not used for digital level layer, and /50 for visual curvature) <br>
                 <!-- code for slider -->
                     <div style="float:left;padding-right:25px">
                     <label for="scale"> <font color=blue><i>scale</i></font>:</label>
@@ -48,7 +47,7 @@
                     <div style="float:left;padding-right:25px">
                     <label for="nblevels">number of levels:  <font color=blue><i>nblevels</i></font>:</label>
                      <input type="text" style="font-family:monospace;text-align:right"
-                        size="3" id="nblevels" name="nblevels" value="10" />
+                        size="3" id="nblevels" name="nblevels" value="20" />
                     </div>
                     <div id="nblevels_slider" name="nblevels_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
                     <script type="text/javascript">
