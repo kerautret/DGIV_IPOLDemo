@@ -166,7 +166,7 @@ class app(base_app):
             ar.add_file("res_ImageVectoContours.pdf", "res_ImageVectoContours.pdf", info="res_ImageVectoContours.pdf")
             ar.add_info({"algo": self.cfg['param']["algorithm"]})
             ar.add_info({"nblevels": self.cfg['param']["nblevels"]})
-            if str(self.cfg['param']['algorithm']) != 'Frechet' :           
+            if str(self.cfg['param']['algorithm']) != 'digital level layer' :           
                 ar.add_info({"scale": self.cfg['param']["scale"]})
             ar.add_info({"version": self.cfg['param']["version"]})
             ar.save()
