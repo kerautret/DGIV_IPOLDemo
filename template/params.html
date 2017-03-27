@@ -29,13 +29,13 @@
                     <div style="float:left;padding-right:25px">
                     <label for="scale"> <font color=blue><i>scale</i></font>:</label>
                      <input type="text" style="font-family:monospace;text-align:right"
-                        size="3" id="scale" name="scale" value="10" />
+                        size="3" id="scale" name="scale" value="2.0" />
                     </div>
                     <div id="scale_slider" name="scale_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
                     <script type="text/javascript">
                     // Turn DIV slider into a slider linked to scale
                     $(document).ready(function() {
-                          createLinkedSlider('#scale', '#scale_slider', 1, 10, 2);
+                          createLinkedSlider('#scale', '#scale_slider', 1, 10, 0.1);
                     });
                     </script>
                     <div style="clear:both"> </div>
