@@ -24,12 +24,29 @@
       </select>
         <br>
       </li>
-      
+      <li> Scale parameter (not used for digital level layer, and *10 for visual curvature)
+                <!-- code for slider -->
+                    <div style="float:left;padding-right:25px">
+                    <label for="svale">scale:  <font color=blue><i>scale</i></font>:</label>
+                     <input type="text" style="font-family:monospace;text-align:right"
+                        size="3" id="scale" name="scale" value="10" />
+                    </div>
+                    <div id="scale_slider" name="scale_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
+                    <script type="text/javascript">
+                    // Turn DIV slider into a slider linked to scale
+                    $(document).ready(function() {
+                          createLinkedSlider('#scale', '#nscale_slider', 1, 10, 2);
+                    });
+                    </script>
+                    <div style="clear:both"> </div>
+                    <!-- end of code for slider -->
+ 
+      </li>
       <li> Level set parameters:
         <br>
                     <!-- code for slider -->
                     <div style="float:left;padding-right:25px">
-                    <label for="nblevels">number of levels sets  <font color=blue><i>nblevels</i></font>:</label>
+                    <label for="nblevels">number of levels:  <font color=blue><i>nblevels</i></font>:</label>
                      <input type="text" style="font-family:monospace;text-align:right"
                         size="3" id="nblevels" name="nblevels" value="10" />
                     </div>
@@ -37,7 +54,7 @@
                     <script type="text/javascript">
                     // Turn DIV slider into a slider linked to scale
                     $(document).ready(function() {
-                          createLinkedSlider('#nblevels', '#nblevels_slider', 2, 255, 1);
+                          createLinkedSlider('#nblevels', '#nblevels_slider', 20, 255, 1);
                     });
                     </script>
                     <div style="clear:both"> </div>
