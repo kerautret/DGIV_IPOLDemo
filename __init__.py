@@ -1,5 +1,5 @@
 """
-demo of Discrete Geometry based Image Vectorization
+Greyscale Image Vectorization from Geometric Digital Contour Representations: online demonstration
 """
 
 from .app import app

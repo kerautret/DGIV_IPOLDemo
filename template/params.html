@@ -16,6 +16,14 @@
     <input type="hidden" name="key" value="${app.key}">
   <div class="action">
     <ul>
+      <li> Choose polygonalization algorithm
+        <select name="precision">
+      %for _p in ['dominant points','digital level layer','Fréchet','Visual Curvature']:
+      <option value="${_p}">${_p}</option>
+      %endfor
+      </select><br \>
+      </li>
+      
       <li> Level set parameters:
 	<ul>
          <ul>

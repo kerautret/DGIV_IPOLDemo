@@ -1,5 +1,5 @@
 """
-Demonstration of work on Discrete Geometry based Image Vectorization
+Greyscale Image Vectorization from Geometric Digital Contour Representations: online demonstration
 demo editor: Bertrand Kerautret
 """
 
@@ -16,7 +16,7 @@ import time
 class app(base_app):
     """ template demo app """
 
-    title = "Discrete Geometry based Image Vectorization:  demonstration"
+    title = "Greyscale Image Vectorization from Geometric Digital Contour Representations: online demonstration"
     xlink_article = 'http://www.ipol.im/'
     xlink_src = 'http://www.ipol.im/pub/pre/67/gjknd_1.1.tgz'
     dgtal_src = 'https://github.com/kerautret/DGtal.git'
