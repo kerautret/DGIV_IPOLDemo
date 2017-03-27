@@ -252,7 +252,7 @@ class app(base_app):
         ## ------
         # Save version num:
         fVersion = open(self.work_dir+"version.txt", "w")
-        command_args = ['imageVectorisation', '--version']
+        command_args = ['levelSetImageVectorization', '--version']
         self.runCommand(command_args, None, fVersion)
         fVersion.close()
         f = open(self.work_dir+"version.txt", "r")
