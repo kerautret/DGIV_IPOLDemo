@@ -207,7 +207,7 @@ class app(base_app):
             command_args = command_args + ['-f', str(self.cfg['param']['scale'])]
         if str(self.cfg['param']['algorithm']) == 'Visual Curvature' :
             command_args = command_args + ['-c', str(self.cfg['param']['scale']/100.0)]
-        if str(self.cfg['param']['algorithm']) =='Basic Sampling' :
+        if str(self.cfg['param']['algorithm']) == 'Basic Sampling' :
             command_args = command_args + ['-p', str(self.cfg['param']['scale']*3.0)]
             
         f = open(self.work_dir+"algoLog.txt", "a")
