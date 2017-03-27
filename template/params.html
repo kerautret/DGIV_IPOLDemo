@@ -17,13 +17,13 @@
     <ul>
       <li> Polygonalization algorithm:
         <select name="algorithm">
-      %for _p in ['dominant points','digital level layer','Frechet','Visual Curvature']:
+      %for _p in ['dominant points','digital level layer','Frechet','Visual Curvature', 'Basic Sampling']:
          <option value="${_p}">${_p}</option>
       %endfor
       </select>
         <br>
       </li>
-      <li> Scale parameter (not used for digital level layer, and /50 for visual curvature) <br>
+      <li> Scale parameter (not used for digital level layer,  /100 for visual curvature and *3 for basic sampling) <br>
                 <!-- code for slider -->
                     <div style="float:left;padding-right:25px">
                     <label for="scale"> <font color=blue><i>scale</i></font>:</label>
