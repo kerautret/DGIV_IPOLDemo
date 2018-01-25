@@ -207,6 +207,10 @@ class app(base_app):
             command_args = command_args + ['-l']
         if str(self.cfg['param']['algorithm']) == 'digital level layer (circular arcs)' :
             command_args = command_args + ['-A']
+        if str(self.cfg['param']['algorithm']) == 'Minimum Length Polygon' :
+            command_args = command_args + ['-m']
+        if str(self.cfg['param']['algorithm']) == 'Faithful Polygon' :
+            command_args = command_args + ['-F']
         if str(self.cfg['param']['algorithm']) == 'Frechet' :
             command_args = command_args + ['-f', str(self.cfg['param']['scale'])]
         if str(self.cfg['param']['algorithm']) == 'Visual Curvature' :
